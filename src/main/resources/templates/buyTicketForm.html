@@ -1,0 +1,87 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+
+<link rel="stylesheet" type="text/css" href="static/css/estilos.css"
+	th:href="@{/css/estilos.css}">
+
+<title>Ticketeria</title>
+</head>
+<body>
+
+	<header>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a class="navbar-brand" href="#"> <!-- 		<div class="div-logo"> -->
+				<!-- 			<img class="d-inline-block align-top" width="90" --> <!-- 				src="static/img/logo-header.png" alt="Logo"> -->
+				<!-- 		</div> -->
+				<div class="div-brand">
+					<span id="app-name">Ticketeria</span> <br>
+				</div>
+			</a>
+			<button class="navbar-toggler " type="button" data-toggle="collapse"
+				data-target="#navbar" aria-controls="navbarSupportedContent"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse text-center" id="navbar">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item"><a class="nav-link"
+						href="/ticketeria/home">Início</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/logout}">Logout</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/ingresso}">Comprar Ingressos</a></li>
+					<!-- <li class="nav-item"><a class="nav-link" href="#">Projetos</a></li> -->
+					<!-- <li class="nav-item"><a class="nav-link" href="#">Contato</a></li> -->
+				</ul>
+
+			</div>
+		</nav>
+	</header>
+
+	<br>
+
+
+	<div class="container">
+		<form action="#" th:action="@{/buyTicket}" th:object="${buyticketform}" method="post" >
+
+			<h3>Filme</h3>
+			<select th:field="*{movieId}">
+				
+				<option th:each="dropDownItem : ${dropDownItemsMovieTitle}"
+					th:value="${dropDownItem.id}" th:utext="${dropDownItem.title}" />
+			</select>
+
+			
+			<button type="submit" class="btn btn-primary">Efetuar compra</button>
+		</form>
+
+		<!-- <form action="#" th:action="@{/processForm}" th:object="${foo}"
+			method="post">
+			<input type="text" th:field="*{bar}" /> <input type="submit" />
+		</form> -->
+	</div>
+
+
+
+
+
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+		crossorigin="anonymous"></script>
+</body>
+</html>
