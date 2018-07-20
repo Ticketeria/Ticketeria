@@ -10,6 +10,8 @@
 
 <link rel="stylesheet" type="text/css" href="static/css/estilos.css"
 	th:href="@{/css/estilos.css}">
+<link rel="stylesheet" type="text/css" href="static/css/signin.css"
+	th:href="@{/css/signin.css}">
 
 <title>Ticketeria</title>
 </head>
@@ -43,19 +45,32 @@
 		</nav>
 	</header>
 
-	<form action="#" th:action="@{/efetuaLogin}" th:object="${loginform}" method="post" >
+	<!-- <form class="text-center" action="#" th:action="@{/efetuaLogin}"
+		th:object="${loginform}" method="post">
 
-			<h3>Username</h3>
-			<input type="text"  th:field="*{username}"/>
+		<h3>Username</h3>
+		<input type="text" th:field="*{username}" />
 
-			<h3>Senha</h3>
-			<input type="text"  th:field="*{password}"/>
-			<br>
+		<h3>Senha</h3>
+		<input type="text" th:field="*{password}" /> <br> <br>
 
-			<button type="submit" class="btn btn-primary">Entrar</button>
+		<button type="submit" class="btn btn-primary">Entrar</button>
+	</form> -->
+	<div class="text-center" >
+		<form class="form-signin" th:action="@{/efetuaLogin}"
+		th:object="${loginform}" method="post">
+			<h1 class="h3 mb-3 font-weight-normal">Login</h1>
+			<label for="inputEmail" class="sr-only">Username</label> <input
+				type="text" id="inputEmail" class="form-control"
+				placeholder="Usuário" required autofocus th:field="*{username}" > <label
+				for="inputPassword" class="sr-only">Senha</label> <input
+				type="password" id="inputPassword" class="form-control"
+				placeholder="Senha" required th:field="*{password}" >
+
+			<button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+
 		</form>
-
-
+	</div>
 
 
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
