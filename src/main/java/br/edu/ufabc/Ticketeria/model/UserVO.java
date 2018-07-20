@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "users")
@@ -22,12 +23,25 @@ public class UserVO {
 	private String username;
 	private String password;
 	
+	
+	private boolean authenticated;
+	
 //	@OneToMany(cascade = CascadeType.ALL,
 //            fetch = FetchType.LAZY,
 //            mappedBy = "users")
 //    private Set<TicketVO> tickets = new HashSet<TicketVO>();
 	//private boolean enabled;
 	
+	@Transient
+	public boolean isAuthenticated() {
+		return authenticated;
+	}
+
+	
+	public void setAuthenticated(boolean authenticated) {
+		this.authenticated = authenticated;
+	}
+
 	public UserVO() {
 	}
 

@@ -23,7 +23,10 @@
 				<div class="div-brand">
 					<span id="app-name">Ticketeria</span> <br>
 				</div>
+
+
 			</a>
+
 			<button class="navbar-toggler " type="button" data-toggle="collapse"
 				data-target="#navbar" aria-controls="navbarSupportedContent"
 				aria-expanded="false" aria-label="Toggle navigation">
@@ -34,18 +37,36 @@
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item"><a class="nav-link"
 						href="/ticketeria/home">Início</a></li>
-					<li class="nav-item"><a class="nav-link" th:href="@{/logout}">Logout</a></li>
-					<li class="nav-item"><a class="nav-link" th:href="@{/ingresso}">Comprar Ingressos</a></li>
-					<!-- <li class="nav-item"><a class="nav-link" href="#">Projetos</a></li> -->
-					<!-- <li class="nav-item"><a class="nav-link" href="#">Contato</a></li> -->
+					
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/ingresso}">Comprar Ingressos</a></li>
+					<div th:switch="${user.authenticated}">
+						<li th:case="true" class="nav-item"><a class="nav-link" th:href="@{/logout}">Logout</a></li>
+						<li th:case="false" class="nav-item"><a class="nav-link" th:href="@{/loginForm}">Login</a></li>
+						<!-- <p th:case="false">User is some other thing</p> -->
+					</div>
 				</ul>
 
 			</div>
+			<a>
+				<div class="div-brand">
+					<span th:utext="${user.username}"></span> <br>
+				</div>
+			</a>
 		</nav>
 	</header>
 
+	<!-- <div th:switch="${user.authenticated}">
+		<p th:case="true">User is an administrator</p>
+		<p th:case="false">User is some other thing</p>
+	</div> -->
+
+
+
+
 	<br>
-	<div class="row justify-content-md-center justify-content-lg-center justify-content-xl-center">
+	<div
+		class="row justify-content-md-center justify-content-lg-center justify-content-xl-center">
 		<div class="col-md-3 col-lg-3 col-xl-3 ">
 
 			<div id="carouselExampleIndicators" class="carousel slide container"

@@ -28,8 +28,23 @@ public class MainController {
 //	private UserRepository UserServiceRepository;
 	
 	@RequestMapping("/home")
-    public String index() {
+    public String home(HttpSession session, Model model) {
+
+		UserVO user = (UserVO) session.getAttribute("usuarioLogado");
+		if(user==null) {
+			System.out.println("Usuario null...");
+			user = new UserVO();
+		}
+		
+		model.addAttribute("user", user);
+		System.out.println(user.getUsername());
+
         return "home";
+    }
+	
+	@RequestMapping("/")
+    public String index() {
+        return "redirect:home";
     }
 	
 	@RequestMapping("/ingresso")
@@ -37,35 +52,12 @@ public class MainController {
         return "ticket";
     }
 	
-	@RequestMapping("/buyTicketForm")
-    public String buyTicketPage(Model model) {
-		
-		
-		List<MovieVO> movies = movieService.getAll();
-		model.addAttribute("dropDownItemsMovieTitle", movies);
-		
-		BuyTicketForm buyTicketForm = new BuyTicketForm();
-		model.addAttribute("buyticketform", buyTicketForm);
-		
-        return "buyTicketForm";
+	@RequestMapping("/paginaDeErro")
+    public String error() {
+        return "error";
     }
 	
-	@RequestMapping("/buyTicket")
-    public String buyTicket(@ModelAttribute("buyticketform") BuyTicketForm buyTicketForm, Model model, HttpSession session) {
-        
-		//System.out.println(movieService.getById(buyTicketForm.getMovieId()).getTitle());
-		
-		MovieVO selectedMovie = movieService.getById(buyTicketForm.getMovieId()).get();
-		
-		TicketVO ticket = new TicketVO();
-		ticket.setUser((UserVO) session.getAttribute("usuarioLogado"));
-		ticket.setMovie(selectedMovie);
-		ticketService.salvar(ticket);
-		
-		
-		
-		return "redirect:home";
-    }
+	
 	
 	
 }
