@@ -16,15 +16,14 @@
 <body>
 
 	<header>
-		<nav class="navbar navbar-expand-lg navbar-light bg-light horizontal">
-			<a class="navbar-brand"> <!-- 		<div class="div-logo"> -->
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a class="navbar-brand" href="#"> <!-- 		<div class="div-logo"> -->
 				<!-- 			<img class="d-inline-block align-top" width="90" --> <!-- 				src="static/img/logo-header.png" alt="Logo"> -->
 				<!-- 		</div> -->
 				<div class="div-brand">
 					<span id="app-name">Ticketeria</span> <br>
 				</div>
 			</a>
-
 			<button class="navbar-toggler " type="button" data-toggle="collapse"
 				data-target="#navbar" aria-controls="navbarSupportedContent"
 				aria-expanded="false" aria-label="Toggle navigation">
@@ -35,55 +34,31 @@
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item"><a class="nav-link"
 						href="/ticketeria/home">Início</a></li>
-					
+					<li class="nav-item"><a class="nav-link" th:href="@{/logout}">Logout</a></li>
 					<li class="nav-item"><a class="nav-link"
 						th:href="@{/ingresso}">Comprar Ingressos</a></li>
+					<!-- <li class="nav-item"><a class="nav-link" href="#">Projetos</a></li> -->
+					<!-- <li class="nav-item"><a class="nav-link" href="#">Contato</a></li> -->
 				</ul>
-			</div>
-			<div th:switch="${user.authenticated}">
-						<!-- <li th:case="true" class="nav-item"><a class="nav-link" th:href="@{/logout}">Logout</a></li>
-						<li th:case="false" class="nav-item"><a class="nav-link" th:href="@{/loginForm}">Login</a></li> -->
-						
-	
-				<div th:case="true" class="dropdown">
-	  				<button class="btn btn-sm btn-primary dropdown-toggle" type="button" data-toggle="dropdown" >
-	  					<span th:utext="${user.username}"></span>
-	  				</button>
-	  				<div class="dropdown-menu">
-	    					<a class="dropdown-item" th:href="@{/logout}">Sair</a>
-	 			 	</div>
-				</div>
-				<a th:case="false" class="nav-link active" th:href="@{/loginForm}">Login</a>
+
 			</div>
 		</nav>
 	</header>
+
 	<br>
 
 
 	<div class="container">
-		<form action="#" th:action="@{/buyTicket}" th:object="${buyticketform}" method="post" >
+		<form action="#" th:action="@{/adminCadastrarFilme}" th:object="${newmovieform}" method="post">
 
-			<h3>Filme</h3>
-			<select th:field="*{movieId}">
-				
-				<option th:each="dropDownItem : ${dropDownItemsMovieTitle}"
-					th:value="${dropDownItem.id}" th:utext="${dropDownItem.title}" />
-			</select>
-
-			
-			<button type="submit" class="btn btn-primary">Efetuar compra</button>
+			<!-- <input type="hidden" th:field="*{id}" /> <br> <br> -->
+			<div class="form-group">
+				<label for="titulo">Título</label> <input class="form-control"
+					type="text" id="titulo" th:field="*{title}" />
+			</div>
+			<button type="submit" class="btn btn-primary">Cadastrar Filme</button>
 		</form>
-
-		<!-- <form action="#" th:action="@{/processForm}" th:object="${foo}"
-			method="post">
-			<input type="text" th:field="*{bar}" /> <input type="submit" />
-		</form> -->
 	</div>
-
-
-
-
-
 
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

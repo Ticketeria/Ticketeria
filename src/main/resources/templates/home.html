@@ -17,9 +17,8 @@
 
 	<header>
 		<nav class="navbar navbar-expand-lg navbar-light bg-light horizontal">
-			<a class="navbar-brand"> <!-- 		<div class="div-logo"> -->
-				<!-- 			<img class="d-inline-block align-top" width="90" --> <!-- 				src="static/img/logo-header.png" alt="Logo"> -->
-				<!-- 		</div> -->
+			<a class="navbar-brand"> <!-- 		<div class="div-logo"> --> <!-- 			<img class="d-inline-block align-top" width="90" -->
+				<!-- 				src="static/img/logo-header.png" alt="Logo"> --> <!-- 		</div> -->
 				<div class="div-brand">
 					<span id="app-name">Ticketeria</span> <br>
 				</div>
@@ -35,39 +34,41 @@
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item"><a class="nav-link"
 						href="/ticketeria/home">Início</a></li>
-					
+
 					<li class="nav-item"><a class="nav-link"
 						th:href="@{/ingresso}">Comprar Ingressos</a></li>
+						
+					<div th:if="${user.role == admin}">
+						<li class="nav-item"><a class="nav-link"
+						th:href="@{/adminCadastrarFilmeForm}">Cadastrar Filme</a></li>
+					</div>
+
+
 				</ul>
 			</div>
 			<div th:switch="${user.authenticated}">
-						<!-- <li th:case="true" class="nav-item"><a class="nav-link" th:href="@{/logout}">Logout</a></li>
+				<!-- <li th:case="true" class="nav-item"><a class="nav-link" th:href="@{/logout}">Logout</a></li>
 						<li th:case="false" class="nav-item"><a class="nav-link" th:href="@{/loginForm}">Login</a></li> -->
-						
-	
+
+
 				<div th:case="true" class="dropdown">
-	  				<button class="btn btn-sm btn-primary dropdown-toggle" type="button" data-toggle="dropdown" >
-	  					<span th:utext="${user.username}"></span>
-	  				</button>
-	  				<div class="dropdown-menu">
-	    					<a class="dropdown-item" th:href="@{/logout}">Sair</a>
-	 			 	</div>
+					<button class="btn btn-sm btn-primary dropdown-toggle"
+						type="button" data-toggle="dropdown">
+						<span th:utext="${user.username}"></span>
+					</button>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" th:href="@{/logout}">Sair</a>
+					</div>
 				</div>
 				<a th:case="false" class="nav-link active" th:href="@{/loginForm}">Login</a>
 			</div>
 		</nav>
 	</header>
 
-	<!-- <div th:switch="${user.authenticated}">
-		<p th:case="true">User is an administrator</p>
-		<p th:case="false">User is some other thing</p>
-	</div> -->
-
-
-
 
 	<br>
-	<div class="row justify-content-md-center justify-content-lg-center justify-content-xl-center">
+	<div
+		class="row justify-content-md-center justify-content-lg-center justify-content-xl-center">
 		<div class="col-md-3 col-lg-3 col-xl-3 ">
 
 			<div id="carouselExampleIndicators" class="carousel slide container"

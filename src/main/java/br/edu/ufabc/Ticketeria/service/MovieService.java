@@ -15,7 +15,7 @@ public class MovieService {
 	@Autowired
 	private MovieRepository repository;
 
-	public void salvar(MovieVO movie) {
+	public void save(MovieVO movie) {
 		repository.save(movie);
 	}
 

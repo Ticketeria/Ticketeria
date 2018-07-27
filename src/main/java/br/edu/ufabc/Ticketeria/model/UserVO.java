@@ -7,6 +7,8 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,8 +24,7 @@ public class UserVO {
 	private Long id;
 	private String username;
 	private String password;
-	
-	
+	private UserRole role;
 	private boolean authenticated;
 	
 //	@OneToMany(cascade = CascadeType.ALL,
@@ -32,12 +33,20 @@ public class UserVO {
 //    private Set<TicketVO> tickets = new HashSet<TicketVO>();
 	//private boolean enabled;
 	
+	@Enumerated(EnumType.STRING)
+	@Column(name = "role")
+	public UserRole getRole() {
+		return role;
+	}
+	public void setRole(UserRole role) {
+		this.role = role;
+	}
+	
 	@Transient
 	public boolean isAuthenticated() {
 		return authenticated;
 	}
 
-	
 	public void setAuthenticated(boolean authenticated) {
 		this.authenticated = authenticated;
 	}

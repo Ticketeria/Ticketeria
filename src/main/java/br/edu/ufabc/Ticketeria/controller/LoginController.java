@@ -39,7 +39,7 @@ public class LoginController {
 			// usuario existe, guardaremos ele na session
 			session.setAttribute("usuarioLogado", user);
 			user.setAuthenticated(true);
-			System.out.println("USUARIO DA SESSAO: " + session.getAttribute("usuarioLogado"));
+			//System.out.println("USUARIO DA SESSAO: " + session.getAttribute("usuarioLogado"));
 			return "redirect:home";
 		}
 		// ele errou a senha, voltou para o formulario

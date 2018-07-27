@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.edu.ufabc.Ticketeria.model.MovieVO;
 import br.edu.ufabc.Ticketeria.model.TicketVO;
+import br.edu.ufabc.Ticketeria.model.UserRole;
 import br.edu.ufabc.Ticketeria.model.UserVO;
 import br.edu.ufabc.Ticketeria.model.form.BuyTicketForm;
 import br.edu.ufabc.Ticketeria.repository.TicketRepository;
@@ -25,6 +26,7 @@ public class MainController {
 	private MovieService movieService;
 	@Autowired
 	private TicketService ticketService;
+	
 //	private UserRepository UserServiceRepository;
 	
 	@RequestMapping("/home")
@@ -37,7 +39,8 @@ public class MainController {
 		}
 		
 		model.addAttribute("user", user);
-		System.out.println(user.getUsername());
+		model.addAttribute("admin", UserRole.ADMIN);
+		//System.out.println(user.getUsername());
 
         return "home";
     }
@@ -48,12 +51,24 @@ public class MainController {
     }
 	
 	@RequestMapping("/ingresso")
-    public String ingresso() {
+    public String ingresso(HttpSession session, Model model) {
+		UserVO user = (UserVO) session.getAttribute("usuarioLogado");
+		if(user==null) {
+			System.out.println("Usuario null...");
+			user = new UserVO();
+		}
+		model.addAttribute("user", user);
         return "ticket";
     }
 	
 	@RequestMapping("/paginaDeErro")
-    public String error() {
+    public String error(HttpSession session, Model model) {
+//		UserVO user = (UserVO) session.getAttribute("usuarioLogado");
+//		if(user==null) {
+//			System.out.println("Usuario null...");
+//			user = new UserVO();
+//		}
+//		model.addAttribute("user", user);
         return "error";
     }
 	

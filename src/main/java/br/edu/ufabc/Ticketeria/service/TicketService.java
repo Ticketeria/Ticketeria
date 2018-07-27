@@ -12,7 +12,7 @@ public class TicketService {
 	@Autowired
 	private TicketRepository repository;
 	
-	public void salvar(TicketVO ticket) {
+	public void save(TicketVO ticket) {
 		repository.save(ticket);
 	}
 	
