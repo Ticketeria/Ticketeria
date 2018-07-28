@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.edu.ufabc.Ticketeria.model.UserVO;
 import br.edu.ufabc.Ticketeria.model.form.LoginForm;
+import br.edu.ufabc.Ticketeria.model.form.SignUpForm;
 import br.edu.ufabc.Ticketeria.service.UserService;
 
 @Controller
@@ -57,5 +58,29 @@ public class LoginController {
 			return "error";
 //			throw new RuntimeException("Nao foi possivel pegar o usuario da sessao.", e);
 		}
+	}
+	
+	@RequestMapping("/signup")
+	public String signUp(Model model) {
+		
+		SignUpForm sigupmodel = new SignUpForm();
+		model.addAttribute("signupform", sigupmodel);
+
+		return "signUp";
+	}
+	
+	@RequestMapping("/efetuaCadastro")
+	public String efetuaCadastro(@ModelAttribute("signUpForm") SignUpForm signupForm, Model model) {
+
+		SignUpForm signupModel = new SignUpForm();
+		model.addAttribute("loginform", signupModel);
+
+		UserVO user = new UserVO();
+		user.setUsername(signupForm.getUsername());
+		user.setPassword(signupForm.getPassword());
+//		user = userService.findByUsernamePassword(loginForm.getUsername(), loginForm.getPassword());
+		userService.salvar(user);
+		// ele errou a senha, voltou para o formulario
+		return "loginForm";
 	}
 }
