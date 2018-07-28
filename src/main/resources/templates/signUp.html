@@ -59,13 +59,16 @@
 	<div class="text-center">
 		<form class="form-signin" th:action="@{/efetuaCadastro}"
 			th:object="${signupform}" method="post">
-			<h1 class="h3 mb-3 font-weight-normal">Login</h1>
+			<h1 class="h3 mb-3 font-weight-normal">Cadastro</h1>
 			<label for="inputEmail" class="sr-only">Cadastro</label> <input
 				type="text" id="inputEmail" class="form-control"
 				placeholder="Usuário" required autofocus th:field="*{username}">
-			<!-- label for="inputPassword" class="sr-only">Nome</label> <input
+			<label for="inputNme" class="sr-only"></label>
+			<input type="text" id="inputName" class="form-control"
+				placeholder="Nome" required th:field="*{name}">
+			<label for="inputPassword" class="sr-only">Nome</label> <input
 				type="password" id="inputPassword" class="form-control"
-				placeholder="Senha" required th:field="*{password}" -->
+				placeholder="Senha" required th:field="*{password}">
 
 			<button class="btn btn-lg btn-primary btn-block" type="submit">Cadastrar</button>
 
