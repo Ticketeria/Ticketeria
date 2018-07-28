@@ -5,6 +5,8 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
+import br.edu.ufabc.Ticketeria.model.UserRole;
+import br.edu.ufabc.Ticketeria.model.UserVO;
 import br.edu.ufabc.Ticketeria.service.UserService;
 
 
