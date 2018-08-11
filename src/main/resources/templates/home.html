@@ -42,6 +42,11 @@
 						<li class="nav-item"><a class="nav-link"
 						th:href="@{/adminCadastrarFilmeForm}">Cadastrar Filme</a></li>
 					</div>
+					
+					<div th:if="${user.role == admin}">
+						<li class="nav-item"><a class="nav-link"
+						th:href="@{/adminCadastrarSessaoForm}">Cadastrar Sessao</a></li>
+					</div>
 
 
 				</ul>
